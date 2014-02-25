@@ -3,7 +3,7 @@ package bowling;
 import junit.framework.Assert;
 import org.junit.Test;
 
-public class ScoreBoardTests {
+public class PlayerScoreTests {
 
     @Test
     public void singleThrowTest() {
