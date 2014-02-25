@@ -1,5 +1,6 @@
 package bowling;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class PlayerScore {
@@ -23,13 +24,16 @@ public class PlayerScore {
     }
 
     public int getScore() {
-        int score = 0;
-        for (Frame frame : frames())
-            score += frame.getPoints();
-        return score;
+        return frames().stream().reduce(0, (sum, frame) -> sum + frame.getPoints(), Integer::sum);
     }
     
-    private Iterable<Frame> frames() {
+    private ArrayList<Frame> frames() {
+        ArrayList<Frame> frames = new ArrayList<>();
+        createIterableOfFrames().forEach((frame) -> frames.add(frame));
+        return frames;
+    }
+    
+    private Iterable<Frame> createIterableOfFrames() {
         return () -> createIteratorOfFrames();
     }
 
