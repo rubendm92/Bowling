@@ -1,7 +1,6 @@
 package bowling;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class PlayerScore {
 
@@ -28,32 +27,18 @@ public class PlayerScore {
     }
     
     private ArrayList<Frame> frames() {
-        ArrayList<Frame> frames = new ArrayList<>();
-        createIterableOfFrames().forEach((frame) -> frames.add(frame));
-        return frames;
+        return new FrameList();
     }
     
-    private Iterable<Frame> createIterableOfFrames() {
-        return () -> createIteratorOfFrames();
-    }
+    private class FrameList extends ArrayList<Frame> {
 
-    private Iterator<Frame> createIteratorOfFrames() {
-        return new Iterator<Frame>() {
-            
-            private int index = 0;
-            
-            @Override
-            public boolean hasNext() {
-                return new Frame(index).isCalculable();
+        public FrameList() {
+            int index = 0;
+            while (new Frame(index).isCalculable()) {
+                add(new Frame(index));
+                index += (new Frame(index).isStrike() ? 1 : 2);
             }
-            
-            @Override
-            public Frame next() {
-                Frame frame = new Frame(index);
-                index += (frame.isStrike() ? 1 : 2);
-                return frame;
-            }
-        };
+        }
     }
     
     private class Frame {
