@@ -2,7 +2,6 @@ package bowling;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class PlayerScore {
 
