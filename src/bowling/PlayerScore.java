@@ -23,11 +23,7 @@ public class PlayerScore {
     }
 
     public int getScore() {
-        return frames().stream().reduce(0, (sum, frame) -> sum + frame.getPoints(), Integer::sum);
-    }
-    
-    private ArrayList<Frame> frames() {
-        return new FrameList();
+        return new FrameList().stream().reduce(0, (sum, frame) -> sum + frame.getPoints(), Integer::sum);
     }
     
     private class FrameList extends ArrayList<Frame> {
