@@ -50,12 +50,8 @@ public class PlayerScore {
         }
 
         public int getPoints() {
-            if (!isCalculable()) {
-                return 0;
-            }
-            if (isFull()) {
-                return scores[index] + scores[index + 1] + scores[index + 2];
-            }
+            if (!isCalculable()) return 0;
+            if (isFull()) return scores[index] + scores[index + 1] + scores[index + 2];
             return scores[index] + scores[index + 1];
         }
 
